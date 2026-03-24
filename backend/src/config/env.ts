@@ -11,9 +11,14 @@ dotenv.config({ path: path.join(backendRoot, ".env") });
 dotenv.config({ path: path.join(backendRoot, ".env.local"), override: true });
 
 const envSchema = z.object({
-  NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
+  NODE_ENV: z
+    .enum(["development", "test", "production"])
+    .default("development"),
   PORT: z.coerce.number().default(4000),
-  FRONTEND_URL: z.string().url().default("http://localhost:3000"),
+  FRONTEND_URL: z
+    .string()
+    .url()
+    .default("https://multi-chanel-agents.vercel.app"),
   REQUEST_TIMEOUT_MS: z.coerce.number().int().positive().default(15000),
   AI_PROVIDER: z.enum(["gemini", "mock"]).default("gemini"),
   GEMINI_MODEL: z.string().default("gemini-2.5-flash"),
